@@ -10,16 +10,14 @@ html {
     box-sizing: border-box;
     clear: both;
     overflow-x: hidden;
-    touch-action: none;
-    -ms-touch-action: none;
+
 }
 
 body{
   background-color: #181818;
   color:#fff;
   overflow-x: hidden;
-  touch-action: none;
-  -ms-touch-action: none;
+ 
 }
 
 .bgImage:before {
