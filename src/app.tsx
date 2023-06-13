@@ -51,7 +51,7 @@ export function App()  {
           <CircleLineFlexRow/>
         </section>
 
-      <main className={`ImageMain mt-40 px-2 sm:px-5 hover:cursor-text`} data-aos="fade-in">
+      <main className={`ImageMain mt-40 px-0 sm:px-5 hover:cursor-text`} data-aos="fade-in">
       {/* Cards - Props data_cards  */}
       <div data-aos="fade-in">
       <Cards props={data_cards1}/> 

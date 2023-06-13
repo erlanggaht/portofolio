@@ -9,12 +9,17 @@ html {
     scroll-behavior: smooth;
     box-sizing: border-box;
     clear: both;
+    overflow-x: hidden;
+    touch-action: none;
+    -ms-touch-action: none;
 }
 
 body{
   background-color: #181818;
   color:#fff;
   overflow-x: hidden;
+  touch-action: none;
+  -ms-touch-action: none;
 }
 
 .bgImage:before {
@@ -225,7 +230,8 @@ transition: ease-in .4s;
 
 @media (max-width:400px) {
   .cardsImage{
-    width: 100%;
+    width: 100vw;
+    margin: 0 auto;
   }
 
 
