@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react"
+import  {  useContext, useEffect, useState } from "react"
 import { GlobalContext } from "../../GlobalContext/globalcontext"
 import Textcroocked from "../Atoms/textcroocked"
 import { TargetedEvent } from "preact/compat"
 import { ErrorServer } from "../../Utils/typed"
 import axios from "axios"
-
+import { setCookie,parseCookies} from "nookies"
 
 export const LoginGuest = (e :TargetedEvent,loginActive : any,setLoginActive : any) => {
     e.preventDefault()
@@ -21,11 +21,6 @@ export const LoginGuest = (e :TargetedEvent,loginActive : any,setLoginActive : a
 }
 
 
-export const SubmitComment = (e : TargetedEvent) => {
-    e.preventDefault()
-    
-}
-
 
 function jump(e : KeyboardEvent,...hidden : any) {
     //@ts-ignore
@@ -41,25 +36,67 @@ function jump(e : KeyboardEvent,...hidden : any) {
 
 
 export default function Guestbook() {
-    const {data,setLoginActive}:any  = useContext(GlobalContext)
+    const {setLoginActive}:any  = useContext(GlobalContext)
     const getLoginStorage = sessionStorage.getItem('login')
-    const [hiddenInput,setHiddenInput] = useState(false)
-    
+    const [hiddenInput,setHiddenInput] = useState(false)   
+    const [input,setInput] = useState({
+        name : "",
+        pesan : ""
+    })
+    const [api,setApi] = useState({})
+
     useEffect(()=>{
-        async function as() {
-            await axios("https://guestbook-mongo-db-portofolio.vercel.app/api/create",{
-             method:"POST",
-             data: {name : "Erlanggaht",pesan:"guddd",limitComment:1},
-             withCredentials : true
-         }).then(res =>  res)
-         }
-         as()
+        async function fn() {
+            const getData = await fetch('http://guestbook-mongo-db-portofolio.vercel.app/api/users',{method:'GET'})
+            const datas = await getData.json()
+            setApi(datas)
+        }
+      fn()
     },[])
+
+   
+
+   
+    // Submit
+         function Submit(e : TargetedEvent) {
+         e.preventDefault()
+         const getCookie = parseCookies().limit
+         if(parseInt(getCookie) !== 5){
+            axios("http://guestbook-mongo-db-portofolio.vercel.app/api/create",{
+                 method:"POST",
+                 data: {name : input.name,pesan:input.pesan,limitComment:1},
+                 headers : {
+                     headerCookies : getCookie
+                    }
+
+                }).then(() => {
+                    // @ts-ignore
+                    setCookie(null,'limit',!getCookie ? 1 : parseInt(getCookie)+1)
+                    
+         }).catch((err)=>console.log(err))
+            }   
+            setInput({name:"",pesan:""})
+         }
+
+        //  FnInput Onchange
+        // @ts-ignore
+        const FNinput = (e : TargetedEvent) => {
+            const target = e.target;
+            // @ts-ignore
+            const name = target.name;
+
+            setInput({
+                ...input,
+                 // @ts-ignore
+                [name] : target.value
+            })
+           
+        }
+        console.log(api)
 
 return (
     <div className={`cardsImage cardsImages2 w-full h-screen sm:h-[100%]  before:shadow-md before:sm:grayscale hover:before:sm:grayscale-0 hover:cursor-text before:hover:sm:transition-all before:grayscale-0 dark:grayscale  dark:before:grayscale-0 dark:before:sm:grayscale-0
-   `}  data-aos='fade-in'>
-
+    `}  data-aos='fade-in'>
 <section className={`h-full sm:w-full sm:py-16  py-12 sm:px-20 px-6 relative`} > 
         <h1 className={`TypographiTitle text-4xl text-white drop-shadow-md capitalize italic tracking-wider`} >Guestbook</h1>
         
@@ -80,20 +117,24 @@ return (
             <h1 className={'text-center text-lg'}>GuestBook</h1>
             <div className={`text-sm text-color-base-100 mt-6 h-2/3 overflow-auto overflow-x-hidden`}>
                 {/* @ts-ignore */}
-                {data ? data.response.data.map((m,i) => {
+                { api.response ? api.response.data.map((m,i) => {
                     // @ts-ignore
                     return <p key={i}>{m.name} : {m.pesan}</p>
                 }) : <ErrorServer/>}
+                {/* @ts-ignore */}
+               
             </div>
 
             <div className={'absolute bottom-0 right-0'}>
           {getLoginStorage ?
-          <form onSubmit={(e) => SubmitComment(e)}> 
-          <input tabIndex={1} placeholder={'Name.. [ Enter ] '} className={`text-gray-200 p-1 px-2 bg-[rgba(255,255,255,0.1)] 
+          <form onSubmit={(e) => Submit(e)}> 
+          <input name={'name'} value={input.name} tabIndex={1} placeholder={'Name.. [ Enter ] '} className={`text-gray-200 p-1 px-2 bg-[rgba(255,255,255,0.1)] 
           ${!hiddenInput ? "" : 'fixed'} right-[9999px]
-          `} onKeyUp={(e) =>jump(e,{hiddenInput,setHiddenInput})}/> 
-          <input tabIndex={2} max={99} maxLength={99} min={2} minLength={2} placeholder={'Enter Comment'} className={`text-gray-200 p-1 px-2 bg-[rgba(255,255,255,0.1)] 
-           ${!hiddenInput ? 'fixed' : ""} right-[9999px]`} /> 
+          `} onKeyUp={(e) =>jump(e,{hiddenInput,setHiddenInput})} onChange={(e) => FNinput(e)}/> 
+          
+          <input name={'pesan'}  value={input.pesan}  tabIndex={2} max={99} maxLength={99} min={2} minLength={2} placeholder={'Comment.. [ Enter ]'} className={`text-gray-200 p-1 px-2 bg-[rgba(255,255,255,0.1)] 
+           ${!hiddenInput ? 'fixed' : ""} right-[9999px]`} onChange={(e) => FNinput(e)} /> 
+           {input.pesan && <button type={'submit'} className={'pl-2'}>submit</button>}
           </form>
           :  
           <a href={'/'} className={'px-2 py-3 inline-block text-color-base-100 text-[14px] hover:text-white'} onClick={(e)=>LoginGuest(e,LoginGuest,setLoginActive)}>login as a guest</a> }

@@ -28,13 +28,15 @@ export function App()  {
       setTimeout(()=>{
         setLoading(true)
       },0)
-      Getdata.then((res) => setData(res))
+        Getdata.then((res) =>{ 
+          setData(res)
+        })
     },[])
    
     
   return (
       // @ts-ignore
-    <GlobalContext.Provider value={{data : data,loginActive : loginActive,setLoginActive }}>
+    <GlobalContext.Provider value={{data : data,setData,loginActive : loginActive,setLoginActive }}>
       {/* @ts-ignore */}
     { !loading ? <LoadingPage/> :
 <>
