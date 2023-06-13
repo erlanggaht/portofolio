@@ -50,6 +50,7 @@ export default function Guestbook() {
             await axios("https://guestbook-mongo-db-portofolio.vercel.app/api/create",{
              method:"POST",
              data: {name : "Erlanggaht",pesan:"guddd",limitComment:1},
+             withCredentials : true
          }).then(res =>  res)
          }
          as()
