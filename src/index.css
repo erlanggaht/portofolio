@@ -227,8 +227,9 @@ transition: ease-in .4s;
 
 @media (max-width:400px) {
   .cardsImage{
-    width: 100vw;
+    width: 96vw;
     margin: 0 auto;
+    padding: 0 2px;
   }
 
 

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { GlobalContext } from "../../GlobalContext/globalcontext"
 import Textcroocked from "../Atoms/textcroocked"
 import { TargetedEvent } from "preact/compat"
@@ -27,16 +27,29 @@ export const SubmitComment = (e : TargetedEvent) => {
 }
 
 
+function jump(e : KeyboardEvent,...hidden : any) {
+    //@ts-ignore
+    const {hiddenInput,setHiddenInput} = hidden[0]
+    if(e.key === 'Enter'){
+        // @ts-ignore
+        e.target.nextSibling.focus()
+        setHiddenInput(true)
+    }
+
+}
+    
+
+
 export default function Guestbook() {
     const {data,setLoginActive}:any  = useContext(GlobalContext)
     const getLoginStorage = sessionStorage.getItem('login')
+    const [hiddenInput,setHiddenInput] = useState(false)
     
     useEffect(()=>{
         async function as() {
             await axios("https://guestbook-mongo-db-portofolio.vercel.app/api/create",{
              method:"POST",
              data: {name : "Erlanggaht",pesan:"guddd",limitComment:1},
-             withCredentials : true
          }).then(res =>  res)
          }
          as()
@@ -74,7 +87,13 @@ return (
 
             <div className={'absolute bottom-0 right-0'}>
           {getLoginStorage ?
-          <form onSubmit={(e) => SubmitComment(e)}> <input placeholder={'comment disini..'} className={'text-bg-base p-1'}/> </form>
+          <form onSubmit={(e) => SubmitComment(e)}> 
+          <input tabIndex={1} placeholder={'Name.. [ Enter ] '} className={`text-gray-200 p-1 px-2 bg-[rgba(255,255,255,0.1)] 
+          ${!hiddenInput ? "" : 'fixed'} right-[9999px]
+          `} onKeyUp={(e) =>jump(e,{hiddenInput,setHiddenInput})}/> 
+          <input tabIndex={2} max={99} maxLength={99} min={2} minLength={2} placeholder={'Enter Comment'} className={`text-gray-200 p-1 px-2 bg-[rgba(255,255,255,0.1)] 
+           ${!hiddenInput ? 'fixed' : ""} right-[9999px]`} /> 
+          </form>
           :  
           <a href={'/'} className={'px-2 py-3 inline-block text-color-base-100 text-[14px] hover:text-white'} onClick={(e)=>LoginGuest(e,LoginGuest,setLoginActive)}>login as a guest</a> }
             </div>
