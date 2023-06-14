@@ -38,12 +38,7 @@ function jump(e : KeyboardEvent,...hidden : any) {
 
 export default function Guestbook() {
 
-    useEffect(()=>{
-        setCookie(null,'limit','yaaa',{
-            secure : true,
-            sameSite : "None"
-        })
-    },[])
+  
     const {setLoginActive}:any  = useContext(GlobalContext)
     const getLoginStorage = sessionStorage.getItem('login')
     const [hiddenInput,setHiddenInput] = useState(false)   
@@ -90,11 +85,7 @@ export default function Guestbook() {
 
                 }).then(() => {
                     if(parseInt(getCookie) !== 5){
-                        // @ts-ignore
-                    setCookie(null,'limit',!getCookie ? 1 : parseInt(getCookie)+1,{
-                        secure : true,
-                        sameSite : "None"
-                    })
+                        console.log('thanks for comment:)')
                     } 
                     setwr(true)
          }).catch((err)=>{
@@ -107,8 +98,11 @@ export default function Guestbook() {
                 },3000)
             })            
          }) 
-           
-            
+                        // @ts-ignore
+         setCookie(null,'limit',!getCookie ? 1 : parseInt(getCookie)+1,{
+            secure : true,
+            sameSite : "None"
+        })
             setInput({name:"",pesan:""})
             setHiddenInput(false)
             setwr(false)
