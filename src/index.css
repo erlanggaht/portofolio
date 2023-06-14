@@ -23,7 +23,7 @@ body{
 content:  "";
 width: 580px;
 height: 778px;
-background-image: url('./assets/erlangga.JPEG');
+background-image: url('./assets/erlangga.webp');
 background-size: 100%;
 object-fit: cover;
 background-repeat: no-repeat;
@@ -265,7 +265,7 @@ transition: ease-in .4s;
   } */
 
 .cardsImages1:before {
-    background-image: url(./assets/imagemain/unplash4.jpg);
+    background-image: url(./assets/imagemain/unplash4.webp);
     content: "";
     width: 100%;
     height: 106%;
@@ -279,19 +279,19 @@ transition: ease-in .4s;
   }
 
 .cardsImages2:before {
-    background-image: url(./assets/imagemain/unplash3.jpg);
+    background-image: url(./assets/imagemain/unplash6.webp);
     content: "";
     width: 100%;
     height: 106%;
     background-size: cover;
     display: block;
-    background-position: center;
+    background-position: right;
     object-fit: cover;    position: absolute;
     z-index: -10;
   }
 
   .cardsImages3:before {
-    background-image: url(./assets/imagemain/unplash2.jpg);
+    background-image: url(./assets/imagemain/unplash2.webp);
     content: "";
     width: 100%;
     height: 106%;
@@ -314,7 +314,7 @@ transition: ease-in .4s;
   }
 
   .cardsImages5:before {
-    background-image: url(./assets/imagemain/unplash1.jpg);
+    background-image: url(./assets/imagemain/unplash1.webp);
     content: "";
     width: 100%;
     height: 106%;
@@ -326,7 +326,7 @@ transition: ease-in .4s;
   }
 
   .cardsImages6:before {
-    background-image: url(./assets/imagemain/unplash5.jpg);
+    background-image: url(./assets/imagemain/unplash5.webp);
     content: "";
     width: 100%;
     height: 106%;
@@ -336,6 +336,32 @@ transition: ease-in .4s;
     object-fit: cover;    position: absolute;
     z-index: -10;
   }
+
+  
+  .cardsImages6:before {
+    background-image: url(./assets/imagemain/unplash5.webp);
+    content: "";
+    width: 100%;
+    height: 106%;
+    background-size: cover;
+    display: block;
+    background-position: center;
+    object-fit: cover;    position: absolute;
+    z-index: -10;
+  }
+
+  .cardsImages7:before {
+    background-image: url(./assets/imagemain/unplash3.webp);
+    content: "";
+    width: 100%;
+    height: 106%;
+    background-size: cover;
+    display: block;
+    background-position: center;
+    object-fit: cover;    position: absolute;
+    z-index: -10;
+  }
+
 
 
   video {

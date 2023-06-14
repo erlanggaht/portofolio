@@ -15,7 +15,7 @@ export default function Cards({props,data_aos}:any) {
    <div className={`cardsImage ${cardsBg} w-full h-screen sm:h-[100%]  before:shadow-md before:sm:grayscale hover:before:sm:grayscale-0 hover:cursor-text before:hover:sm:transition-all before:grayscale-0 dark:grayscale  dark:before:grayscale-0 dark:before:sm:grayscale-0 `}  data-aos={data_aos} id={id}>
    
      <section className={`h-full sm:w-full sm:py-16  py-12 sm:px-20 px-6 relative`} > 
-     <video  className={`${cards4 ? "" : "hidden "} grayscale-0 dark:grayscale  dark:sm:grayscale-0 hover:sm:grayscale-0`} src={`${cards4? "https://res.cloudinary.com/djsizjaee/video/upload/v1686271917/stadium_-_40634_720p_xnguch.mp4" : ""}`} autoPlay={true} loop={true} playsInline={true} muted={true} ></video>     
+     <video  className={`${cards4 ? "" : "hidden "} grayscale-0 dark:grayscale  dark:sm:grayscale-0 hover:sm:grayscale-0`} src={`${cards4? "https://res.cloudinary.com/djsizjaee/video/upload/v1686771902/stadium_-_40634_720p_xnguch_1_1_zuuzob.mp4" : ""}`} autoPlay={true} loop={true} playsInline={true} muted={true} ></video>     
         <h1 className={`TypographiTitle text-4xl text-white drop-shadow-md capitalize italic tracking-wider`} >{Title_typo}</h1>
         
         <div className={'Github_description mt-40  ]'}>
