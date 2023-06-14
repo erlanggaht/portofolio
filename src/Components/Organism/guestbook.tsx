@@ -85,7 +85,8 @@ export default function Guestbook() {
                     if(parseInt(getCookie) !== 5){
                         // @ts-ignore
                     setCookie(null,'limit',!getCookie ? 1 : parseInt(getCookie)+1,{
-                        
+                        secure : true,
+                        sameSite : "None"
                     })
                     } 
                     setwr(true)
