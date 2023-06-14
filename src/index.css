@@ -98,10 +98,9 @@ text-shadow: -4px -1px 0px rgba(102,102,102,0.34);
 }
 
 .nav > .nav-links {
-  display: inline;
-  float: right;
+  display: flex;
+  align-items: center;
   font-size: 18px;
-  margin-top: 10px;
   padding: 0 10px;
 }
 
@@ -167,7 +166,7 @@ transition: ease-in .4s;
     display: inline-block;
     position: absolute;
     right: 4.1rem;
-    top: 2.1rem;
+    top: 2rem;
   }
   .nav > .nav-btn > label {
     display: inline-block;

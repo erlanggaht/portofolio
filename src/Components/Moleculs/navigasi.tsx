@@ -1,4 +1,5 @@
  import ghsotIcon from '../../assets/icons/ghost-halloween-horror-svgrepo-com.svg'
+ import setting from '../../assets/icons/settings.svg'
 export default function Navigasi() {
   function RedirectCard () {
  
@@ -27,7 +28,8 @@ export default function Navigasi() {
     <a className={'dark:before:hover:bg-color-base-100'}  href="/#card1" onClick={() => RedirectCard()}>Github</a>
     <a className={'dark:before:hover:bg-color-base-100'} href="/#card2" onClick={() => RedirectCard()}>Links</a>
     <a className={'dark:before:hover:bg-color-base-100'} href="/#card3" onClick={() => RedirectCard()}>Projects</a>
-    <a className={'dark:before:hover:bg-color-base-100'} href="/#card4" onClick={() => RedirectCard()}>Settings</a>
+    <a className={'dark:before:hover:bg-color-base-100'} href="/#card4" onClick={() => RedirectCard()}>Guestbook</a>
+    <a className={'dark:before:hover:bg-color-base-100 dark:bg-color-base-100 dark:rounded-full'} href="/#guestbook" onClick={() => RedirectCard()}><img src={setting} alt={'setting'} width={32} height={32} className={'dark:py-[3px] dark:px-[4px] '}/></a>
   </div>
 </nav>
     </>

@@ -125,7 +125,7 @@ export default function Guestbook() {
        
 
 return (
-    <div className={`cardsImage cardsImages7 w-full h-screen sm:h-[100%]  before:shadow-md before:sm:grayscale hover:before:sm:grayscale-0 hover:cursor-text before:hover:sm:transition-all before:grayscale-0 dark:grayscale  dark:before:grayscale-0 dark:before:sm:grayscale-0
+    <div id={'#guestbook'} className={`cardsImage cardsImages7 w-full h-screen sm:h-[100%]  before:shadow-md before:sm:grayscale hover:before:sm:grayscale-0 hover:cursor-text before:hover:sm:transition-all before:grayscale-0 dark:grayscale  dark:before:grayscale-0 dark:before:sm:grayscale-0
     `}  data-aos='fade-in'>
 <section className={`h-full sm:w-full sm:py-16  py-12 sm:px-20 px-6 relative`} > 
         <h1 className={`TypographiTitle text-4xl text-white drop-shadow-md capitalize italic tracking-wider`} >Guestbook</h1>
