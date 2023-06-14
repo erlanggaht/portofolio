@@ -77,12 +77,16 @@ export default function Guestbook() {
          axios("https://guestbook-mongo-db-portofolio.vercel.app/api/create",{
                  method:"POST",
                  data: {name : input.name,pesan:input.pesan,limitComment:1},
-            
+                 headers : {
+                     headerCookies : getCookie,
+                    }
 
                 }).then(() => {
                     if(parseInt(getCookie) !== 5){
                         // @ts-ignore
-                    setCookie(null,'limit',!getCookie ? 1 : parseInt(getCookie)+1)
+                    setCookie(null,'limit',!getCookie ? 1 : parseInt(getCookie)+1,{
+                        
+                    })
                     } 
                     setwr(true)
          }).catch((err)=>{
