@@ -37,6 +37,13 @@ function jump(e : KeyboardEvent,...hidden : any) {
 
 
 export default function Guestbook() {
+
+    useEffect(()=>{
+        setCookie(null,'limit','yaaa',{
+            secure : true,
+            sameSite : "None"
+        })
+    },[])
     const {setLoginActive}:any  = useContext(GlobalContext)
     const getLoginStorage = sessionStorage.getItem('login')
     const [hiddenInput,setHiddenInput] = useState(false)   
