@@ -33,7 +33,7 @@ export const TypedReactHooksDemo = () => {
   }, [])
 
   return (
-      <div className="type-wrap relative z-10 sm:mx-0 mx-7 pl-0 sm:pl-1 dark:text-bg-base">
+      <div className="type-wrap relative z-10 sm:mx-0 mx-5 mt-3 sm:mt-0 pl-0 sm:pl-1 dark:text-white">
         <span style={{ whiteSpace: 'pre' }} ref={el} />
       </div>
   );

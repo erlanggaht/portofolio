@@ -16,18 +16,18 @@ export default function Navigasi() {
     </div>
   </div>
   <div className="nav-btn">
-    <label for="nav-check">
-      <span></span>
-      <span></span>
-      <span></span>
+    <label for="nav-check" >
+      <span  className={'dark:bg-color-base-100 bg-color-base-200'}></span>
+      <span  className={'dark:bg-color-base-100 bg-color-base-200'}></span>
+      <span  className={'dark:bg-color-base-100 bg-color-base-200'}></span>
     </label>
   </div>
   
-  <div className="nav-links dark:text-bg-base">
-    <a  href="/#card1" onClick={() => RedirectCard()}>Github</a>
-    <a  href="/#card2" onClick={() => RedirectCard()}>Links</a>
-    <a  href="/#card3" onClick={() => RedirectCard()}>Projects</a>
-    <a  href="/#card4" onClick={() => RedirectCard()}>Settings</a>
+  <div className="nav-links dark:text-bg-base dark:bg-[#FDF9F9]">
+    <a className={'dark:before:hover:bg-color-base-100'}  href="/#card1" onClick={() => RedirectCard()}>Github</a>
+    <a className={'dark:before:hover:bg-color-base-100'} href="/#card2" onClick={() => RedirectCard()}>Links</a>
+    <a className={'dark:before:hover:bg-color-base-100'} href="/#card3" onClick={() => RedirectCard()}>Projects</a>
+    <a className={'dark:before:hover:bg-color-base-100'} href="/#card4" onClick={() => RedirectCard()}>Settings</a>
   </div>
 </nav>
     </>

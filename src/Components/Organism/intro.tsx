@@ -19,7 +19,7 @@ export default function Intro() {
           <div className={`bgImage w-1/2 h-full  before:absolute hover:cursor-text before:right-0 before:sm:right-40 before:w-full before:hover:bg-[0px_-20px] before:sm:w-[560px] before:bg-[0px_-20px]  before:sm:bg-[40px_center] before:hover:sm:bg-[50px_center]  before:top-0 `}/>
 
           <div className={`sm:h-[778px] h-[778px] max-w-[640px] flex flex-col justify-center `}>
-          <h1 className={`titleHIntro text-5xl dark:text-bg-base text-color-base-200  sm:w-[640px] w-full  leading-tight  z-50 font-bold sm:px-0 ml-6 sm:mx-0 pr-10 mt-10 `}>Hello, my name is Erlangga Hidayatullah</h1>
+          <h1 className={`titleHIntro text-5xl dark:text-bg-base  text-color-base-200 sm-[640px] dark:sm:w-[390px] w-full  leading-tight  z-50 font-bold sm:px-0 ml-6 sm:mx-0 pr-10 mt-10 dark:rotate-3 dark:sm:rotate-0 `}><span className={'dark:bg-color-base-200 dark:lg:bg-transparent dark:drop-shadow-xl'}>Hello, my name is Erlangga Hidayatullah</span></h1>
           <h1><TypedReactHooksDemo/></h1>
           <div className={`mt-16 mx-7 sm:mx-0 w-[100px]`}>
           <Garis />

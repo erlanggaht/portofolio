@@ -10,13 +10,10 @@ import './app.css'
 import LoadingPage from './Utils/Loading'
 import Guestbook from './Components/Organism/guestbook'
 import { GlobalContext } from './GlobalContext/globalcontext'
-import GETDATA from './Lib/api'
 // @ts-ignore
 export function App()  {
   const [loginActive,setLoginActive] = useState<Boolean>(false) 
   const [loading,setLoading] = useState(false)
-  const Getdata = GETDATA()
-  const [data,setData] = useState()
   const { 
     data_cards1,
     data_cards2,
@@ -28,15 +25,13 @@ export function App()  {
       setTimeout(()=>{
         setLoading(true)
       },0)
-        Getdata.then((res) =>{ 
-          setData(res)
-        })
+     
     },[])
    
     
   return (
       // @ts-ignore
-    <GlobalContext.Provider value={{data : data,setData,loginActive : loginActive,setLoginActive }}>
+    <GlobalContext.Provider value={{loginActive : loginActive,setLoginActive }}>
       {/* @ts-ignore */}
     { !loading ? <LoadingPage/> :
 <>

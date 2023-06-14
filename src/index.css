@@ -166,8 +166,8 @@ transition: ease-in .4s;
   .nav > .nav-btn {
     display: inline-block;
     position: absolute;
-    right: 4rem;
-    top: 2.2rem;
+    right: 4.1rem;
+    top: 2.1rem;
   }
   .nav > .nav-btn > label {
     display: inline-block;
@@ -182,9 +182,9 @@ transition: ease-in .4s;
   }
   .nav > .nav-btn > label > span {
     display: block;
-    width: 25px;
-    height: 10px;
-    border-top: 3px solid #eee;
+    width: 30px;
+    height: 7px;
+    margin: 3px 0;
   }
   .nav > .nav-links {
     position: absolute;
@@ -232,7 +232,13 @@ transition: ease-in .4s;
     padding: 0 2px;
   }
 
-
+  .titleHIntro {
+    margin: 0;
+    padding: 10px;
+    width:100%;
+    line-height: 66px;
+  }
+  
 }
 
 

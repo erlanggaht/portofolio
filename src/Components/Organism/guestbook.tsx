@@ -25,11 +25,12 @@ export const LoginGuest = (e :TargetedEvent,loginActive : any,setLoginActive : a
 function jump(e : KeyboardEvent,...hidden : any) {
     //@ts-ignore
     const {hiddenInput,setHiddenInput} = hidden[0]
-    if(e.key === 'Enter'){
-        // @ts-ignore
-        e.target.nextSibling.focus()
-        setHiddenInput(true)
-    }
+        if(e.key === 'Enter'){
+            // @ts-ignore
+            e.target.nextSibling.focus()
+            setHiddenInput(true)
+        }
+    
 
 }
     
@@ -43,39 +44,64 @@ export default function Guestbook() {
         name : "",
         pesan : ""
     })
+    const [errorLimitInput,setInputLimitError] = useState('')
     const [api,setApi] = useState({})
+    const [wr,setwr] = useState(false)
 
     useEffect(()=>{
         async function fn() {
-            const getData = await fetch('http://guestbook-mongo-db-portofolio.vercel.app/api/users',{method:'GET'})
+            const getData = await fetch('https://guestbook-mongo-db-portofolio.vercel.app/api/users',{method:'GET'})
             const datas = await getData.json()
             setApi(datas)
         }
       fn()
     },[])
 
-   
+   useEffect(()=>{
+        if(wr) {
+            async function fn() {
+                const getData = await fetch('https://guestbook-mongo-db-portofolio.vercel.app/api/users',{method:'GET'})
+                const datas = await getData.json()
+                setApi(datas)
+            }
+          fn()
+        }
+
+   },[wr])
 
    
     // Submit
          function Submit(e : TargetedEvent) {
          e.preventDefault()
          const getCookie = parseCookies().limit
-         if(parseInt(getCookie) !== 5){
-            axios("http://guestbook-mongo-db-portofolio.vercel.app/api/create",{
+         axios("https://guestbook-mongo-db-portofolio.vercel.app/api/create",{
                  method:"POST",
                  data: {name : input.name,pesan:input.pesan,limitComment:1},
                  headers : {
-                     headerCookies : getCookie
+                     headerCookies : getCookie,
                     }
 
                 }).then(() => {
-                    // @ts-ignore
+                    if(parseInt(getCookie) !== 5){
+                        // @ts-ignore
                     setCookie(null,'limit',!getCookie ? 1 : parseInt(getCookie)+1)
-                    
-         }).catch((err)=>console.log(err))
-            }   
+                    } 
+                    setwr(true)
+         }).catch((err)=>{
+            const textResponseError = err.response.data
+             new Promise((resolve) => {
+                   resolve(setInputLimitError(textResponseError))                   
+             }).then(()=>{
+                setTimeout(()=>{
+                    setInputLimitError('')
+                },3000)
+            })            
+         }) 
+           
+            
             setInput({name:"",pesan:""})
+            setHiddenInput(false)
+            setwr(false)
          }
 
         //  FnInput Onchange
@@ -92,7 +118,7 @@ export default function Guestbook() {
             })
            
         }
-        console.log(api)
+       
 
 return (
     <div className={`cardsImage cardsImages2 w-full h-screen sm:h-[100%]  before:shadow-md before:sm:grayscale hover:before:sm:grayscale-0 hover:cursor-text before:hover:sm:transition-all before:grayscale-0 dark:grayscale  dark:before:grayscale-0 dark:before:sm:grayscale-0
@@ -127,11 +153,11 @@ return (
 
             <div className={'absolute bottom-0 right-0'}>
           {getLoginStorage ?
-          <form onSubmit={(e) => Submit(e)}> 
+          <form onSubmit={(e) => Submit(e)} className={' text-right'}> 
+          <span className={'text-[12px] text-color-base-100 font-thin italic px-1 py-2'}>{errorLimitInput}</span>
           <input name={'name'} value={input.name} tabIndex={1} placeholder={'Name.. [ Enter ] '} className={`text-gray-200 p-1 px-2 bg-[rgba(255,255,255,0.1)] 
           ${!hiddenInput ? "" : 'fixed'} right-[9999px]
           `} onKeyUp={(e) =>jump(e,{hiddenInput,setHiddenInput})} onChange={(e) => FNinput(e)}/> 
-          
           <input name={'pesan'}  value={input.pesan}  tabIndex={2} max={99} maxLength={99} min={2} minLength={2} placeholder={'Comment.. [ Enter ]'} className={`text-gray-200 p-1 px-2 bg-[rgba(255,255,255,0.1)] 
            ${!hiddenInput ? 'fixed' : ""} right-[9999px]`} onChange={(e) => FNinput(e)} /> 
            {input.pesan && <button type={'submit'} className={'pl-2'}>submit</button>}
