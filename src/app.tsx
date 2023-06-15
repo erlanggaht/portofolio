@@ -24,7 +24,7 @@ export function App()  {
     useEffect(()=>{
       setTimeout(()=>{
         setLoading(true)
-      },0)
+      },1500)
      
     },[])
    
